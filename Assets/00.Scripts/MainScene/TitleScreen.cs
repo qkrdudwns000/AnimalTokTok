@@ -34,7 +34,7 @@ public class TitleScreen : MonoBehaviour
         Text.text = "화면을 터치하세요.";
         isPossibleScreenTouch = true;
         //유저데이터업데이트
-        GPGSBinder.Inst.LoadCloud("Nickname", (success, data) => UserBar.UserDataUpdate(data));
+        //GPGSBinder.Inst.LoadCloud("Nickname", (success, data) => UserBar.UserDataUpdate(data));
     }
 
     public void ScreenTouch() //OnClick

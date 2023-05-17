@@ -48,18 +48,26 @@ public class GPGSBinder
         PlayGamesPlatform.Instance.SignOut();
     }
 
+    //SavedGame.OpenWithAutomaticConflictResolution(): 
+    //          열다 함께  자동    갈등     해결
     public void SearchCloud(string fileName, Action istrue = null, Action isfalse = null)
     {
-        SavedGame.OpenWithAutomaticConflictResolution("nickname", DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, (status, game) =>
+        SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, (status, game) =>
         {
             if (status == SavedGameRequestStatus.Success)
             {
+                #region TEST
                 // 파일이 이미 있음
+                Debug.Log($"{fileName} 이라는 클라우드가 있음");
+                // 있다면 파일안에 데이터 불러오기
+                LoadCloud(fileName, (success, data) => Debug.Log($"닉네임 파일 저장된 문자는 {data} 입니다."));
+                #endregion
                 istrue?.Invoke();
             }
             else
             {
                 // 파일이 없음
+                Debug.Log($"{fileName} 이라는 클라우드가 없음");
                 isfalse?.Invoke();
             }
         });
@@ -100,6 +108,10 @@ public class GPGSBinder
                             onCloudLoaded?.Invoke(false, null);
                     });
                 }
+                else
+                {
+                    Debug.Log("클라우드 로드 실패");
+                }
             });
     }
 
@@ -117,7 +129,6 @@ public class GPGSBinder
                     onCloudDeleted?.Invoke(false);
             });
     }
-
 
     public void ShowAchievementUI() =>
         Social.ShowAchievementsUI();
