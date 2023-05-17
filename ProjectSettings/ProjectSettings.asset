@@ -250,8 +250,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: Desktop/AnimalTokTok.keystore'
-  AndroidKeyaliasName: animaltoktok
+  AndroidKeystoreName: C:/Users/KJH/Desktop/ATT_res/ATT.keystore
+  AndroidKeyaliasName: att
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
