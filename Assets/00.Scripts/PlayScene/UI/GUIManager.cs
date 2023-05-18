@@ -7,6 +7,10 @@ public class GUIManager : MonoBehaviour
     public static GUIManager inst;
     private Animator myAnim = null;
 
+    public GameObject go_GameOver = null;
+    public TMPro.TMP_Text txt_CurScore;
+    public TMPro.TMP_Text txt_BestScore;
+
     [SerializeField] TMPro.TMP_Text Txt_Score = null;
     [SerializeField] TMPro.TMP_Text Txt_Timer = null;
     [SerializeField] TMPro.TMP_Text Txt_AddTimer = null;
@@ -73,6 +77,7 @@ public class GUIManager : MonoBehaviour
         {
             curTimer = 0.0f;
             isEnoughTime = false;
+            GameOver();
         }
     }
     public void AddTimer(float _sec)
@@ -90,7 +95,23 @@ public class GUIManager : MonoBehaviour
         {
             isStopWatch = false;
             curStopWatchTimer = maxStopWatchTimer;
+        }       
+    }
+
+    public void GameOver()
+    {
+        GameManager.inst.isGameOver = true;
+
+        go_GameOver.SetActive(true);
+
+        if (score > PlayerPrefs.GetInt("BestScore"))
+        {
+            PlayerPrefs.SetInt("BestScore", score);
+            txt_BestScore.text = "New Best: " + PlayerPrefs.GetInt("BestScore").ToString();
         }
-            
+        else
+            txt_BestScore.text = "Best: " + PlayerPrefs.GetInt("BestScore").ToString();
+
+        txt_CurScore.text = score.ToString();
     }
 }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.SocialPlatforms.Impl;
+
 
 //ÁÖÇö
 public class MainManager : MonoBehaviour
@@ -29,8 +28,4 @@ public class MainManager : MonoBehaviour
         TitleScreen.LoginSuccess();
     }
 
-    public void StartButton() // OnClick
-    {
-        SceneManager.LoadScene("Play");
-    }
 }
