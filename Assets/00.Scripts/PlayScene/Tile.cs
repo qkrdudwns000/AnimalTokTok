@@ -25,43 +25,47 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (render.sprite == null || PlayManager.inst.IsSliding)
-            return;
-
-        if (isSelect)
-            Deselect();
-        else
+        if(!GameManager.inst.isGameOver)
         {
-            if (previousTile == null) // 첫 클릭
-                Select();
+            if (render.sprite == null || PlayManager.inst.IsSliding)
+                return;
+
+            if (isSelect)
+                Deselect();
             else
             {
-                Debug.Log(previousTile.gameObject);
-                // 4방향 인접 오브젝트 중 지금 클릭중인 오브젝트가 있을 경우 실행.
-                if (GetAllAdjcentTiles().Contains(previousTile.gameObject))
+                if (previousTile == null) // 첫 클릭
+                    Select();
+                else
                 {
-                    SwapSprite(previousTile.render);
-                    previousTile.ClearAllMatches(); // 내가 클릭했던 tile match확인
-                    previousTile.Deselect();
-                    ClearAllMatches(); // 수동적으로 내가 클릭했던 tile과 교환된 현재 tile match 확인.
-                    if(PlayManager.inst.emptyTileCount >= 3)
-                        PlayManager.inst.CalcScoreAndTimer();
-                    PlayManager.inst.emptyTileCount = 0;
-                }
-                else // 아닐 경우
-                {
-                    previousTile.GetComponent<Tile>().Deselect(); // 전 클릭 취소
-                    Select(); // 현재 클릭 활성화.
-                }
+                    Debug.Log(previousTile.gameObject);
+                    // 4방향 인접 오브젝트 중 지금 클릭중인 오브젝트가 있을 경우 실행.
+                    if (GetAllAdjcentTiles().Contains(previousTile.gameObject))
+                    {
+                        SwapSprite(previousTile.render);
+                        previousTile.ClearAllMatches(); // 내가 클릭했던 tile match확인
+                        previousTile.Deselect();
+                        ClearAllMatches(); // 수동적으로 내가 클릭했던 tile과 교환된 현재 tile match 확인.
+                        if (PlayManager.inst.emptyTileCount >= 3)
+                            PlayManager.inst.CalcScoreAndTimer();
+                        PlayManager.inst.emptyTileCount = 0;
+                    }
+                    else // 아닐 경우
+                    {
+                        previousTile.GetComponent<Tile>().Deselect(); // 전 클릭 취소
+                        Select(); // 현재 클릭 활성화.
+                    }
 
+                }
             }
-        }
+        }  
     }
 
     private void Select()
     {
         isSelect = true;
         render.color = selectColor;
+        AudioManager.inst.PlaySFX("SelectTile");
         previousTile = gameObject.GetComponent<Tile>();
     }
     void Deselect()
@@ -76,6 +80,7 @@ public class Tile : MonoBehaviour
         if (render.sprite == _render.sprite) // 고른 sprite와 옮긴 sprite가 같을 경우 return
             return;
 
+        AudioManager.inst.PlaySFX("TileChange");
         Sprite tempSprite = _render.sprite;
         _render.sprite = render.sprite;
         render.sprite = tempSprite;
@@ -136,6 +141,7 @@ public class Tile : MonoBehaviour
             for (int i = 0; i < matchingTiles.Count; i++)
                 matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null; // 그림 지워주기.
 
+            AudioManager.inst.PlaySFX("Matching");
             matchFound = true;
         }    
     }

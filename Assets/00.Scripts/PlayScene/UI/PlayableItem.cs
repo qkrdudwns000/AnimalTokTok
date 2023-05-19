@@ -16,7 +16,7 @@ public class PlayableItem : MonoBehaviour
  
     public void Btn_RainbowBomb()
     {
-        if(!isOpenSelectWindow)
+        if(!isOpenSelectWindow && !isUsedRainbowBomb)
         {
             go_RanibowSelect.SetActive(true);
             isOpenSelectWindow = true;
@@ -44,6 +44,7 @@ public class PlayableItem : MonoBehaviour
             GUIManager.inst.isStopWatch = true;
             img_StopWatch.color = selectColor;
             isUsedStopWatch = true;
+            AudioManager.inst.LoopSFX("TikTok");
         }
     }
 }

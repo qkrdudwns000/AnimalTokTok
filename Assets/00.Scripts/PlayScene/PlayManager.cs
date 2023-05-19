@@ -140,6 +140,7 @@ public class PlayManager : MonoBehaviour
             for (int h = 0; h < height; h++)
                 if (tiles[w, h].GetComponent<SpriteRenderer>().sprite == characters[_tileNum])
                     tiles[w, h].GetComponent<SpriteRenderer>().sprite = null;
+        AudioManager.inst.PlaySFX("Matching");
 
         EmptyTileCounting();
         CalcScoreAndTimer();

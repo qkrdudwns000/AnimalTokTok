@@ -34,6 +34,7 @@ public class GUIManager : MonoBehaviour
         curTimer = maxTimer;
         curStopWatchTimer = maxStopWatchTimer;
         isEnoughTime = true;
+        GameManager.inst.isGameOver = false;
     }
     private void Update()
     {
@@ -93,14 +94,16 @@ public class GUIManager : MonoBehaviour
         Txt_Timer.text = curTimer.ToString("F2");
         if (curStopWatchTimer <= 0.0f)
         {
+            AudioManager.inst.LoopStopSFX("TikTok");
             isStopWatch = false;
             curStopWatchTimer = maxStopWatchTimer;
-        }       
+        }
     }
 
     public void GameOver()
     {
         GameManager.inst.isGameOver = true;
+        AudioManager.inst.PlaySFX("GameOver");
 
         go_GameOver.SetActive(true);
 

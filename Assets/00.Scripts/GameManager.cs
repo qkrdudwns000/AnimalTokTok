@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
     public float fadeSpeed = 0.02f;
     private string currentScene;
-    private bool isReturning = false;
 
     private AsyncOperation async;
     
@@ -33,6 +32,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string _sceneName)
     {
+        if (_sceneName == "Play")
+            AudioManager.inst.PlaySFX("Start");   
+        else
+            AudioManager.inst.PlaySFX("Main");
+
         inst.StartCoroutine(Load(_sceneName));
         inst.StartCoroutine(FadeOut(inst.fadeObj, inst.fadeImg));
     }
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) // scene 로드될때마다 실행.
     {
         currentScene = scene.name;
+        Debug.Log(currentScene);
+        AudioManager.inst.PlayBGM(currentScene);
         inst.StartCoroutine(FadeIn(inst.fadeObj, inst.fadeImg));
     }
 
@@ -75,7 +81,6 @@ public class GameManager : MonoBehaviour
         async = SceneManager.LoadSceneAsync(_sceneName);
         async.allowSceneActivation = false; // 곧 바로 화면전환되는 것을 막음. true 가 되면 다시 활성화.
         yield return async;
-        isReturning = false;
     }
 
     public void ActivateScene()
