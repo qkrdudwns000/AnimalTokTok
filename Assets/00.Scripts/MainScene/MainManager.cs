@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 
 //주현
@@ -13,19 +14,18 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("MainManager.cs의 Start");
         GoogleLogin();
     }
 
     void GoogleLogin()
     {
-        GPGSBinder.Inst.Login((success, localUser) => LoginSuccess());
-        //string s = $"{success}, {localUser.userName}, {localUser.id}, {localUser.state}, {localUser.underage}");
+        GPGSBinder.Inst.Login((success, localUser) => LoginSuccess(localUser));
     }
 
-    void LoginSuccess()
+    void LoginSuccess(ILocalUser localuser)
     {
-        TitleScreen.LoginSuccess();
+        TitleScreen.isPossibleScreenTouch = true; // 타이틀화면 터치가능 -> 터치하면 메인화면으로
+        UserBar.UserDataUpdate(localuser.id);
     }
 
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class UserBar : MonoBehaviour
 {
-    public TMP_Text Nickname;
+    public TMP_Text ID;
 
     public void UserDataUpdate(string name)
     {
-        Nickname.text = name;
+        ID.text = name;
     }
 }

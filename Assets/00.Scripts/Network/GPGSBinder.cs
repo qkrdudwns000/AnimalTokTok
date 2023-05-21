@@ -13,15 +13,11 @@ public class GPGSBinder
     static GPGSBinder inst = new GPGSBinder();
     public static GPGSBinder Inst => inst;
 
-
-
     ISavedGameClient SavedGame =>
         PlayGamesPlatform.Instance.SavedGame;
 
     IEventsClient Events =>
         PlayGamesPlatform.Instance.Events;
-
-
 
     void Init()
     {
@@ -50,7 +46,7 @@ public class GPGSBinder
 
     //SavedGame.OpenWithAutomaticConflictResolution(): 
     //          열다 함께  자동    갈등     해결
-    public void SearchCloud(string fileName, Action istrue = null, Action isfalse = null)
+    public void SearchCloud(string fileName, Action istrue = null, Action isfalse = null) //오류 - 아무 파일이름이나 넣어도 파일이 존재한다고 나옴
     {
         SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, (status, game) =>
         {
@@ -129,6 +125,9 @@ public class GPGSBinder
                     onCloudDeleted?.Invoke(false);
             });
     }
+    //nickname 이라는 파일에 "꼬맹이"라는 문자열을 저장
+    //함수로 삭제
+    //nickname 이라는 파일에 저장된 문자열이 ""로 바뀌어 있음
 
     public void ShowAchievementUI() =>
         Social.ShowAchievementsUI();
