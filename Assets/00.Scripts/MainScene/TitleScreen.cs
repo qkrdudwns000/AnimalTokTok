@@ -13,14 +13,19 @@ using System.Runtime.InteropServices.WindowsRuntime;
 public class TitleScreen : MonoBehaviour
 {
     public TMP_Text Text;
-    public GameObject MakeNicknameWindow;
     public UserBar UserBar;
 
     public bool isPossibleScreenTouch = false;
 
+    public void LoginSuccess()
+    {
+        Text.text = "화면을 터치해 주세요!"; // Text내용 바꾸기
+        isPossibleScreenTouch = true; //화면터치 가능
+    }
+
     public void ScreenTouch() //OnClick
     {
-        if (isPossibleScreenTouch)//로그인에 성공하였다면
+        if (isPossibleScreenTouch) //로그인에 성공하였다면
         {
             this.gameObject.SetActive(false);
         }

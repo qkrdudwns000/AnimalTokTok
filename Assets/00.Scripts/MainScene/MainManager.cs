@@ -24,7 +24,7 @@ public class MainManager : MonoBehaviour
 
     void LoginSuccess(ILocalUser localuser)
     {
-        TitleScreen.isPossibleScreenTouch = true; // 타이틀화면 터치가능 -> 터치하면 메인화면으로
+        TitleScreen.LoginSuccess();
         UserBar.UserDataUpdate(localuser.id);
     }
 
