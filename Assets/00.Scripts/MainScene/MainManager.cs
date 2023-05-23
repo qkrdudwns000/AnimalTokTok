@@ -14,7 +14,8 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-        GoogleLogin();
+        //구글로그인
+        //GoogleLogin();
     }
 
     void GoogleLogin()
