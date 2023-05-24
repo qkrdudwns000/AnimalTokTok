@@ -12,21 +12,24 @@ public class MainManager : MonoBehaviour
     public TitleScreen TitleScreen;
     public UserBar UserBar;
 
+    bool isGoogleLoginSuccess()
+    {
+        // 추후 구글 연동 예정
+        return true;
+    }
+
     void Start()
     {
-        //구글로그인
-        //GoogleLogin();
+        if(isGoogleLoginSuccess())
+        {
+            LoginSuccess();
+        }
     }
 
-    void GoogleLogin()
-    {
-        GPGSBinder.Inst.Login((success, localUser) => LoginSuccess(localUser));
-    }
-
-    void LoginSuccess(ILocalUser localuser)
+    void LoginSuccess()
     {
         TitleScreen.LoginSuccess();
-        UserBar.UserDataUpdate(localuser.id);
+        UserBar.UserDataUpdate("테스트 아이디");
     }
 
 }
