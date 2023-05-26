@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string _sceneName)
     {
         if (_sceneName == "Play")
-            AudioManager.inst.PlaySFX("Start");   
+            AudioManager.inst.PlaySFX("Start");
         else
             AudioManager.inst.PlaySFX("Main");
 
