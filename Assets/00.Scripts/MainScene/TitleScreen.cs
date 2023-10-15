@@ -1,5 +1,3 @@
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
