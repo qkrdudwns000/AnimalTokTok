@@ -22,7 +22,7 @@ public class MainManager : MonoBehaviour
     {
         if(isGoogleLoginSuccess())
         {
-            LoginSuccess();
+            //LoginSuccess();
         }
     }
 

@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1422958807301253802, guid: d9b81ac70a4cff74cb7f3a77b0a7d7e7, type: 3}
+      propertyPath: maxTimer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1422958807301253803, guid: d9b81ac70a4cff74cb7f3a77b0a7d7e7, type: 3}
       propertyPath: m_Pivot.x
       value: 0

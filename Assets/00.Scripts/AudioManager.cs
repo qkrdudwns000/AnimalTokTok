@@ -37,8 +37,9 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        bgmSlider.value = 1.0f;
-        sfxSlider.value = 1.0f;
+        //TODO: 나중에 슬라이드 추가시 주석해제
+        //bgmSlider.value = 1.0f;
+        //sfxSlider.value = 1.0f;
     }
 
     public void PlayBGM(string _bgmName)

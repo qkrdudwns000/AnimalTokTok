@@ -69,7 +69,7 @@ public class GUIManager : MonoBehaviour
         curTimer -= Time.deltaTime;
         Txt_Timer.text = curTimer.ToString("F2");
 
-        if (curTimer <= 10.0f)
+        if (curTimer <= 5.0f)
             Txt_Timer.color = Color.red;
         else
             Txt_Timer.color = Color.white;
